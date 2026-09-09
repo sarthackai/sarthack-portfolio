@@ -44,6 +44,39 @@ export const projects = [
 ];
 
 export const certifications = [
-  { title: "Machine Learning", issuer: "IBM" },
-  { title: "Deep Learning", issuer: "IBM" },
+  {
+    title: "Machine Learning with Python",
+    issuer: "IBM Learning",
+    courseId: "ML0101EN",
+    date: "January 31, 2026",
+    image: "/certificates/ml-python.png",
+    verificationUrl:
+      "https://courses.ibmlearning.skillsnetwork.site/certificates/29a5bb3006a6455baf7fe7a710679149",
+  },
+  {
+    title: "Deep Learning with TensorFlow",
+    issuer: "IBM Learning",
+    courseId: "ML0120EN",
+    date: "February 1, 2026",
+    image: "/certificates/deep-learning-tensorflow.png",
+    verificationUrl:
+      "https://courses.ibmlearning.skillsnetwork.site/certificates/f6c237b706ec4f9bba91fbdf6e8862b4",
+  },
+  {
+    title: "Prompt Engineering for Everyone",
+    issuer: "IBM Learning",
+    courseId: "AI0117EN",
+    date: "February 2, 2026",
+    image: "/certificates/prompt-engineering.png",
+    verificationUrl:
+      "https://courses.ibmlearning.skillsnetwork.site/certificates/e3c31ae61d394614a267a5afad6b22df",
+  },
+  {
+    title: "Virtual Internship in Machine Learning & Artificial Intelligence",
+    issuer: "IBM Learning",
+    date: "February 02, 2026",
+    image: "/certificates/virtual-internship-ml-ai.png",
+    verificationUrl:
+      "https://ibmlearning.skillsnetwork.site/certificates/de39d9dc-1daa-44ff-beef-8cffd39952c8",
+  },
 ];
