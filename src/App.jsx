@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ThemeProvider, { useTheme } from './context/ThemeProvider';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -39,14 +40,16 @@ function CursorGlow() {
   );
 }
 
-export default function App() {
+function AppContent() {
+  const { theme } = useTheme();
+
   return (
     <>
       <CursorGlow />
-      <ParticleField />
+      <ParticleField theme={theme} />
       <Navbar />
       <main style={{ position: 'relative', zIndex: 1 }}>
-        <Hero />
+        <Hero theme={theme} />
         <About />
         <Education />
         <Skills />
@@ -56,5 +59,13 @@ export default function App() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }

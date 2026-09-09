@@ -41,7 +41,7 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.3 }}
           >
             <h3>
-              I'm <span style={{ color: 'var(--accent-cyan)' }}>Sarthack Das</span>
+              I'm <span style={{ color: 'var(--accent-primary)' }}>Sarthack Das</span>
             </h3>
             <p>{personalInfo.careerObjective}</p>
             <p>

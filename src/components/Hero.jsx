@@ -3,12 +3,12 @@ import { FiGithub, FiLinkedin, FiMail, FiDownload, FiArrowRight } from 'react-ic
 import { personalInfo } from '../data/resumeData';
 import NeuralNetwork from './three/NeuralNetwork';
 
-export default function Hero() {
+export default function Hero({ theme }) {
   return (
     <section className="hero" id="hero">
       {/* 3D Background */}
       <div className="hero-canvas">
-        <NeuralNetwork />
+        <NeuralNetwork theme={theme} />
       </div>
 
       {/* Content */}

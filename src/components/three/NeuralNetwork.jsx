@@ -2,10 +2,12 @@ import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-function NeuralNetworkMesh() {
+function NeuralNetworkMesh({ theme }) {
   const groupRef = useRef();
   const pointsRef = useRef();
   const linesRef = useRef();
+
+  const isDark = theme === 'dark';
 
   const { positions, connections } = useMemo(() => {
     const nodeCount = 120;
@@ -67,6 +69,13 @@ function NeuralNetworkMesh() {
     return s;
   }, [positions]);
 
+  // Theme-aware colors and opacities
+  const nodeColor = isDark ? '#8B5CF6' : '#E85D04';
+  const nodeOpacity = isDark ? 0.9 : 0.55;
+  const lineColor = isDark ? '#3B82F6' : '#C94D00';
+  const lineOpacity = isDark ? 0.12 : 0.08;
+  const blending = isDark ? THREE.AdditiveBlending : THREE.NormalBlending;
+
   return (
     <group ref={groupRef}>
       {/* Neural network nodes */}
@@ -87,11 +96,11 @@ function NeuralNetworkMesh() {
         </bufferGeometry>
         <pointsMaterial
           size={0.06}
-          color="#00f0ff"
+          color={nodeColor}
           transparent
-          opacity={0.9}
+          opacity={nodeOpacity}
           sizeAttenuation
-          blending={THREE.AdditiveBlending}
+          blending={blending}
           depthWrite={false}
         />
       </points>
@@ -107,10 +116,10 @@ function NeuralNetworkMesh() {
           />
         </bufferGeometry>
         <lineBasicMaterial
-          color="#00f0ff"
+          color={lineColor}
           transparent
-          opacity={0.12}
-          blending={THREE.AdditiveBlending}
+          opacity={lineOpacity}
+          blending={blending}
           depthWrite={false}
         />
       </lineSegments>
@@ -119,8 +128,9 @@ function NeuralNetworkMesh() {
 }
 
 // Floating ambient particles
-function AmbientParticles() {
+function AmbientParticles({ theme }) {
   const ref = useRef();
+  const isDark = theme === 'dark';
 
   const positions = useMemo(() => {
     const arr = new Float32Array(600);
@@ -148,18 +158,18 @@ function AmbientParticles() {
       </bufferGeometry>
       <pointsMaterial
         size={0.02}
-        color="#a855f7"
+        color={isDark ? '#60A5FA' : '#C94D00'}
         transparent
-        opacity={0.4}
+        opacity={isDark ? 0.35 : 0.2}
         sizeAttenuation
-        blending={THREE.AdditiveBlending}
+        blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
         depthWrite={false}
       />
     </points>
   );
 }
 
-export default function NeuralNetwork() {
+export default function NeuralNetwork({ theme = 'dark' }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 7], fov: 60 }}
@@ -168,8 +178,8 @@ export default function NeuralNetwork() {
       gl={{ alpha: true, antialias: true }}
     >
       <ambientLight intensity={0.3} />
-      <NeuralNetworkMesh />
-      <AmbientParticles />
+      <NeuralNetworkMesh theme={theme} />
+      <AmbientParticles theme={theme} />
     </Canvas>
   );
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personalInfo } from '../data/resumeData';
+import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -56,15 +57,18 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <button
-          className="navbar-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation menu"
-        >
-          <span style={menuOpen ? { transform: 'rotate(45deg) translate(5px, 5px)' } : {}} />
-          <span style={menuOpen ? { opacity: 0 } : {}} />
-          <span style={menuOpen ? { transform: 'rotate(-45deg) translate(5px, -5px)' } : {}} />
-        </button>
+        <div className="navbar-right">
+          <ThemeToggle />
+          <button
+            className="navbar-toggle"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            <span style={menuOpen ? { transform: 'rotate(45deg) translate(5px, 5px)' } : {}} />
+            <span style={menuOpen ? { opacity: 0 } : {}} />
+            <span style={menuOpen ? { transform: 'rotate(-45deg) translate(5px, -5px)' } : {}} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile overlay */}
@@ -78,7 +82,7 @@ export default function Navbar() {
             style={{
               position: 'fixed',
               inset: 0,
-              background: 'rgba(0,0,0,0.5)',
+              background: 'var(--overlay-bg)',
               zIndex: -1,
             }}
           />

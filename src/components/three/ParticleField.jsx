@@ -2,8 +2,9 @@ import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-function Particles() {
+function Particles({ theme }) {
   const ref = useRef();
+  const isDark = theme === 'dark';
 
   const positions = useMemo(() => {
     const arr = new Float32Array(900);
@@ -32,18 +33,18 @@ function Particles() {
       </bufferGeometry>
       <pointsMaterial
         size={0.025}
-        color="#00f0ff"
+        color={isDark ? '#8B5CF6' : '#C94D00'}
         transparent
-        opacity={0.25}
+        opacity={isDark ? 0.2 : 0.12}
         sizeAttenuation
-        blending={THREE.AdditiveBlending}
+        blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
         depthWrite={false}
       />
     </points>
   );
 }
 
-export default function ParticleField() {
+export default function ParticleField({ theme = 'dark' }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 8], fov: 60 }}
@@ -56,7 +57,7 @@ export default function ParticleField() {
       dpr={[1, 1.5]}
       gl={{ alpha: true, antialias: false }}
     >
-      <Particles />
+      <Particles theme={theme} />
     </Canvas>
   );
 }
