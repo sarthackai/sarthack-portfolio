@@ -9,36 +9,33 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="about section" id="about">
+    <section className="about section section-with-grid" id="about">
       <div className="container" ref={ref}>
-        <motion.div
-          className="section-heading"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="label">Get to Know Me</span>
-          <h2>About Me</h2>
-          <div className="underline" />
-        </motion.div>
-
-        <div className="about-grid">
+        <div className="about-layout">
+          {/* Left — Sticky heading + monogram */}
           <motion.div
-            className="about-visual"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            className="about-left"
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
           >
-            <div className="about-visual-inner">
-              <span className="about-avatar-text">SD</span>
+            <div className="section-heading section-heading--left">
+              <span className="label">Get to Know Me</span>
+              <h2>About Me</h2>
+              <div className="underline" />
+            </div>
+
+            <div className="about-monogram">
+              <span className="about-monogram-text">SD</span>
             </div>
           </motion.div>
 
+          {/* Right — Content */}
           <motion.div
-            className="about-text"
+            className="about-right"
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
             <h3>
               I'm <span style={{ color: 'var(--accent-primary)' }}>Sarthack Das</span>

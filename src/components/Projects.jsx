@@ -4,13 +4,22 @@ import { FiArrowUpRight, FiActivity, FiFilm } from 'react-icons/fi';
 import { projects, personalInfo } from '../data/resumeData';
 
 const iconMap = {
-  disease: <FiActivity size={28} />,
-  recommendation: <FiFilm size={28} />,
+  disease: <FiActivity size={24} />,
+  recommendation: <FiFilm size={24} />,
+};
+
+const taglines = {
+  disease: 'End-to-end ML pipeline with React frontend and Supabase backend for real-time health predictions.',
+  recommendation: 'Content-based filtering system using Python and Scikit-learn for personalized movie suggestions.',
 };
 
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  // First project is featured, rest are secondary
+  const featured = projects[0];
+  const secondary = projects.slice(1);
 
   return (
     <section className="projects section" id="projects">
@@ -26,43 +35,99 @@ export default function Projects() {
           <div className="underline" />
         </motion.div>
 
-        <div className="projects-grid">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.title}
-              className="project-card glass-card"
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
-              whileHover={{ y: -8 }}
-            >
-              <div className="project-card-header">
-                <div className={`project-card-icon ${project.icon}`}>
-                  {iconMap[project.icon]}
+        <div className="projects-layout">
+          {/* Featured Project */}
+          <motion.div
+            className="project-card project-card--featured glass-card"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            whileHover={{ y: -6 }}
+          >
+            <div className="project-card-inner">
+              <div className="project-number">01</div>
+              <div className="project-card-main">
+                <div className="project-card-header">
+                  <div className={`project-card-icon ${featured.icon}`}>
+                    {iconMap[featured.icon]}
+                  </div>
+                  <div className="project-card-header-text">
+                    <h3>{featured.title}</h3>
+                    <p className="project-card-tagline">{taglines[featured.icon]}</p>
+                  </div>
                 </div>
-                <h3>{project.title}</h3>
+
+                <div className="project-card-body">
+                  <div className="project-card-tags">
+                    {featured.technologies.map((tech) => (
+                      <span key={tech} className="tech-tag">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
+                    href={personalInfo.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-card-link"
+                  >
+                    View on GitHub <FiArrowUpRight />
+                  </a>
+                </div>
               </div>
+            </div>
+          </motion.div>
 
-              <div className="project-card-body">
-                <div className="project-card-tags">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-card-link"
+          {/* Secondary Projects */}
+          {secondary.length > 0 && (
+            <div className="projects-secondary">
+              {secondary.map((project, i) => (
+                <motion.div
+                  key={project.title}
+                  className="project-card project-card--standard glass-card"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.35 + i * 0.15 }}
+                  whileHover={{ y: -6 }}
                 >
-                  View on GitHub <FiArrowUpRight />
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                  <div className="project-card-inner">
+                    <div className="project-number">{String(i + 2).padStart(2, '0')}</div>
+                    <div className="project-card-main">
+                      <div className="project-card-header">
+                        <div className={`project-card-icon ${project.icon}`}>
+                          {iconMap[project.icon]}
+                        </div>
+                        <div className="project-card-header-text">
+                          <h3>{project.title}</h3>
+                          <p className="project-card-tagline">{taglines[project.icon]}</p>
+                        </div>
+                      </div>
+
+                      <div className="project-card-body">
+                        <div className="project-card-tags">
+                          {project.technologies.map((tech) => (
+                            <span key={tech} className="tech-tag">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        <a
+                          href={personalInfo.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-card-link"
+                        >
+                          View on GitHub <FiArrowUpRight />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

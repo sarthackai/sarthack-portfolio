@@ -28,7 +28,7 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3>Let's work together</h3>
+            <h3>Let's build something intelligent.</h3>
             <p>
               I'm always open to discussing new projects, creative ideas, or opportunities to
               be part of your vision. Feel free to reach out!

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { personalInfo } from '../data/resumeData';
 import ThemeToggle from './ThemeToggle';
@@ -15,6 +15,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -22,7 +23,29 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLinkClick = () => setMenuOpen(false);
+  // Active section observer
+  useEffect(() => {
+    const sectionIds = navLinks.map((l) => l.href.slice(1));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+    );
+
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleLinkClick = useCallback(() => setMenuOpen(false), []);
 
   return (
     <motion.nav
@@ -39,7 +62,11 @@ export default function Navbar() {
         <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a href={link.href} onClick={handleLinkClick}>
+              <a
+                href={link.href}
+                onClick={handleLinkClick}
+                className={activeSection === link.href.slice(1) ? 'active' : ''}
+              >
                 {link.label}
               </a>
             </li>

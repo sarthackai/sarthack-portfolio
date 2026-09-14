@@ -54,7 +54,7 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="skills section" id="skills">
+    <section className="skills section section-with-grid" id="skills">
       <div className="container" ref={ref}>
         <motion.div
           className="section-heading"
@@ -76,8 +76,10 @@ export default function Skills() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.15 * i }}
             >
-              <div className="skill-category-icon">{cat.icon}</div>
-              <h3>{cat.title}</h3>
+              <div className="skill-category-header">
+                <div className="skill-category-icon">{cat.icon}</div>
+                <h3>{cat.title}</h3>
+              </div>
               <div className="skill-list">
                 {cat.skills.map((skill) => (
                   <motion.span

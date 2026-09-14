@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ThemeProvider, { useTheme } from './context/ThemeProvider';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -10,6 +10,7 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ParticleField from './components/three/ParticleField';
+import LoadingScreen from './components/LoadingScreen';
 
 function CursorGlow() {
   const [pos, setPos] = useState({ x: -300, y: -300 });
@@ -63,9 +64,17 @@ function AppContent() {
 }
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
   return (
     <ThemeProvider>
+      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
       <AppContent />
     </ThemeProvider>
   );
 }
+
