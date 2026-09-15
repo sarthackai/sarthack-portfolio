@@ -9,7 +9,7 @@ import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ParticleField from './components/three/ParticleField';
+import Continuous3DWorld from './components/three/Continuous3DWorld';
 import LoadingScreen from './components/LoadingScreen';
 
 function CursorGlow() {
@@ -47,10 +47,10 @@ function AppContent() {
   return (
     <>
       <CursorGlow />
-      <ParticleField theme={theme} />
+      <Continuous3DWorld theme={theme} />
       <Navbar />
       <main style={{ position: 'relative', zIndex: 1 }}>
-        <Hero theme={theme} />
+        <Hero />
         <About />
         <Education />
         <Skills />
@@ -77,4 +77,5 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
 
