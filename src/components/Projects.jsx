@@ -1,16 +1,12 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FiArrowUpRight, FiActivity, FiFilm } from 'react-icons/fi';
-import { projects, personalInfo } from '../data/resumeData';
+import { FiArrowUpRight, FiActivity, FiFilm, FiMonitor } from 'react-icons/fi';
+import { projects } from '../data/resumeData';
 
 const iconMap = {
   disease: <FiActivity size={24} />,
   recommendation: <FiFilm size={24} />,
-};
-
-const taglines = {
-  disease: 'End-to-end ML pipeline with React frontend and Supabase backend for real-time health predictions.',
-  recommendation: 'Content-based filtering system using Python and Scikit-learn for personalized movie suggestions.',
+  cinehub: <FiMonitor size={24} />,
 };
 
 export default function Projects() {
@@ -53,7 +49,7 @@ export default function Projects() {
                   </div>
                   <div className="project-card-header-text">
                     <h3>{featured.title}</h3>
-                    <p className="project-card-tagline">{taglines[featured.icon]}</p>
+                    <p className="project-card-tagline">{featured.description}</p>
                   </div>
                 </div>
 
@@ -66,14 +62,16 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  <a
-                    href={personalInfo.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-card-link"
-                  >
-                    View on GitHub <FiArrowUpRight />
-                  </a>
+                  {featured.github && (
+                    <a
+                      href={featured.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-card-link"
+                    >
+                      View on GitHub <FiArrowUpRight />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -100,7 +98,7 @@ export default function Projects() {
                         </div>
                         <div className="project-card-header-text">
                           <h3>{project.title}</h3>
-                          <p className="project-card-tagline">{taglines[project.icon]}</p>
+                          <p className="project-card-tagline">{project.description}</p>
                         </div>
                       </div>
 
@@ -113,14 +111,16 @@ export default function Projects() {
                           ))}
                         </div>
 
-                        <a
-                          href={personalInfo.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-card-link"
-                        >
-                          View on GitHub <FiArrowUpRight />
-                        </a>
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-card-link"
+                          >
+                            View on GitHub <FiArrowUpRight />
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>

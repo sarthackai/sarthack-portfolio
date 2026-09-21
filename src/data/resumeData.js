@@ -35,11 +35,24 @@ export const projects = [
     title: "AI Disease Prediction System",
     technologies: ["Python", "React", "Supabase", "Machine Learning"],
     icon: "disease",
+    github: "https://github.com/sarthackai/disease-prediction-platform.git",
+    description:
+      "Built a full-stack disease prediction web application with React frontend and Supabase backend. Trained a Scikit-learn classification model on patient records achieving 92% prediction accuracy. Designed and integrated a Supabase PostgreSQL backend with REST APIs, reducing average query response time. Created a responsive React.js user interface for returning predictions.",
   },
   {
     title: "Netflix Recommendation System",
     technologies: ["Python", "Scikit-learn", "Pandas"],
     icon: "recommendation",
+    description:
+      "Engineered a recommendation system engine processing a dataset of titles to deliver personalized content suggestions for users. Applied Pandas and NumPy for data preprocessing, enhancing recommendation relevance. Benchmarked Cosine similarity algorithms and selected the best-performing approach, increasing recommendation accuracy.",
+  },
+  {
+    title: "CineHub — AI-Powered Real-Time OTT Content Recommendation Platform",
+    technologies: ["Python", "React", "Supabase", "FastAPI"],
+    icon: "cinehub",
+    github: "https://github.com/sarthackai/cinehub.git",
+    description:
+      "Built a full-stack, production-style streaming content platform demonstrating machine learning, real-time data engineering, and modern full-stack development. Aggregates live movie and TV metadata from TMDB. Stores movie and TV metadata in a normalized PostgreSQL database.",
   },
 ];
 
