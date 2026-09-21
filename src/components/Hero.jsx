@@ -70,8 +70,8 @@ export default function Hero() {
               View Projects <FiArrowRight />
             </a>
             <a
-              href="/Sarthack_Resume_.pdf"
-              download
+              href="/Sarthack_DasResume.pdf"
+              download="Sarthack_Das_Resume.pdf"
               className="glow-btn"
             >
               <FiDownload /> Resume

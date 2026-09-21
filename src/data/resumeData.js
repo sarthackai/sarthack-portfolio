@@ -1,4 +1,4 @@
-// All data extracted directly from Sarthack_Resume_.pdf
+// All data extracted directly from Sarthack_DasResume.pdf
 // Do NOT invent or fabricate any information
 
 export const personalInfo = {
